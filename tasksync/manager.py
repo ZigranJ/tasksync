@@ -7,7 +7,7 @@ class TaskManager:
         self.__tasks = []
 
     def getTasks(self):
-        return self.__tasks
+        return list(self.__tasks)
 
     def addTask(self, name, project):
         if not isinstance(name, str):
