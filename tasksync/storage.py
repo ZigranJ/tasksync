@@ -32,7 +32,10 @@ def dict_to_task(taskDict):
     if not isinstance(taskDict, dict):
         raise TypeError("taskDict should be a dict.")
 
-    return Task(taskDict["name"], taskDict["project"], taskDict["done"])
+    try:
+        return Task(taskDict["name"], taskDict["project"], taskDict["done"])
+    except KeyError:
+        raise ValueError("A task dict should have a name, project and done keys with proper types.")
 
 def load_data(filePath):
     if not isinstance(filePath, str):
