@@ -1,5 +1,6 @@
 import tasksync.manager
 import tasksync.storage
+import tasksync.listing
 import logging
 
 logging.basicConfig(
@@ -23,15 +24,7 @@ while True:
         except ValueError as err:
             logging.error(err)
     elif cmd == "list":
-        tasks = task_manager.getTasks()
-        for task in tasks:
-            doneMark = ' '
-            projectSign = ""
-            if task.done:
-                doneMark = '✓'
-            if len(task.project) != 0:
-                projectSign = f" ({task.project})"
-            print(f"[{doneMark}] {task.name}{projectSign}")
+        tasksync.listing.printTasks(task_manager.getTasks())
     elif cmd == "done":
         name = input("Task name: ")
         try:
