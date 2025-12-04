@@ -46,14 +46,14 @@ def load_data(filePath):
     try:
         with open(filePath, "r") as file:
             tasks_dict = json.load(file)
-    except FileNotFoundError as err:
-        raise err
-    except PermissionError as err:
-        raise err
-    except IsADirectoryError as err:
-        raise err
-    except OSError as err:
-        raise err
+    except FileNotFoundError:
+        raise
+    except PermissionError:
+        raise
+    except IsADirectoryError:
+        raise
+    except OSError:
+        raise
     
     tasks = []
 
@@ -83,11 +83,11 @@ def save_data(filePath, tasks):
     try:
         with open(filePath, "w") as file:
             json.dump(tasks_dicts, file, indent = 2)
-    except FileNotFoundError as err:
-        raise err
-    except PermissionError as err:
-        raise err
-    except IsADirectoryError as err:
-        raise err
-    except OSError as err:
-        raise err
+    except FileNotFoundError:
+        raise
+    except PermissionError:
+        raise
+    except IsADirectoryError:
+        raise
+    except OSError:
+        raise

@@ -60,11 +60,11 @@ class TaskManager:
     def saveTasks(self, filePath):
         try:
             storage.save_data(filePath, self.__tasks)
-        except Exception as err:
-            raise err
+        except Exception:
+            raise
 
     def loadTasks(self, filePath):
         try:
             self.__tasks = storage.load_data(filePath)
-        except Exception as err:
-            raise err
+        except Exception:
+            raise
