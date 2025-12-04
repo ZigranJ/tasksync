@@ -52,6 +52,7 @@ while True:
         print("help - print this help screen")
         print("save - save tasks into a file")
         print("load - load tasks from a file")
+        print("sort - sorts tasks alphabetically")
     elif cmd == "save":
         filePath = input("File path: ")
         try:
@@ -84,5 +85,7 @@ while True:
             print("Error:", err)
         except OSError as err:
             print("Error:", err)
+    elif cmd == "sort":
+        task_manager.SortTasks()
     else:
         print("Invalid command.")

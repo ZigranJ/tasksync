@@ -54,7 +54,7 @@ class TaskManager:
             raise LookupError("Task not found.")
 
     def SortTasks(self):
-        self.__tasks.sort()
+        self.__tasks.sort(key=lambda t: t.name)
         pass
 
     def saveTasks(self, filePath):
