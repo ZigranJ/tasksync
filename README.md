@@ -1,6 +1,6 @@
 # tasksync
 
-TaskSync is a CLI task manager written in python.
+TaskSync is a CLI task manager written in python using SQLite.
 
 ## Installation
 
@@ -20,7 +20,5 @@ done - mark a task as done
 delete - delete a task
 exit - exit the program
 help - print this help screen
-save - save tasks into a file
-load - load tasks from a file
 sort - sorts tasks alphabetically
 ```

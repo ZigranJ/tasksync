@@ -4,7 +4,7 @@ from . import storage
 class TaskManager:
 
     def __init__(self):
-        self.__tasks = []
+        self.__tasks = storage.load_data()
 
     def getTasks(self):
         return list(self.__tasks)
@@ -23,6 +23,17 @@ class TaskManager:
                 raise ValueError("Another task with the same name already exists.")
 
         self.__tasks.append(Task(name, project, False))
+
+        conn = storage.get_connection()
+        db = conn.cursor()
+
+        db.execute(
+            "INSERT INTO tasks (name, project, done) VALUES (?, ?, ?)",
+            (name, project, 0)
+        )
+
+        conn.commit()
+        conn.close()
     
     def markTaskDone(self, name):
         if not isinstance(name, str):
@@ -37,6 +48,17 @@ class TaskManager:
 
         if not found:
             raise LookupError("Task not found.")
+        
+        conn = storage.get_connection()
+        db = conn.cursor()
+
+        db.execute(
+            "UPDATE tasks SET done=1 WHERE name=?",
+            (name,)
+        )
+
+        conn.commit()
+        conn.close()
 
     def deleteTask(self, name):
         if not isinstance(name, str):
@@ -52,19 +74,15 @@ class TaskManager:
                 
         if not found:
             raise LookupError("Task not found.")
+        
+        conn = storage.get_connection()
+        db = conn.cursor()
+
+        db.execute("DELETE FROM tasks WHERE name=?", (name,))
+
+        conn.commit()
+        conn.close()
 
     def SortTasks(self):
         self.__tasks.sort(key=lambda t: t.name)
         pass
-
-    def saveTasks(self, filePath):
-        try:
-            storage.save_data(filePath, self.__tasks)
-        except Exception:
-            raise
-
-    def loadTasks(self, filePath):
-        try:
-            self.__tasks = storage.load_data(filePath)
-        except Exception:
-            raise
