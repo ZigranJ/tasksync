@@ -1,6 +1,7 @@
 from .models import Task
 import os
 import sqlite3
+import logging
 
 DB_PATH = "tasks.db"
 
@@ -8,6 +9,7 @@ def get_connection():
     return sqlite3.connect(DB_PATH)
 
 def init_db():
+    logging.info("Initializing database.")
     conn = get_connection()
     db = conn.cursor()
 
@@ -23,6 +25,7 @@ def init_db():
     conn.close()
 
 def load_data():
+    logging.info("Loading database.")
     conn = get_connection()
     db = conn.cursor()
 
