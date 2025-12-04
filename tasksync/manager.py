@@ -44,8 +44,8 @@ class TaskManager:
         
         found = False
 
-        for i in range(0, len(self.__tasks)):
-            if self.__tasks[i].name == name:
+        for i, task in enumerate(self.__tasks):
+            if task.name == name:
                 found = True
                 self.__tasks.pop(i)
                 break
