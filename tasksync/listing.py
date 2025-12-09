@@ -5,19 +5,18 @@ def printTasks(tasks):
     stops = [0, 0, 0]
     lineLength = 0
 
-    for header in headers:
-        if stops[0] < len(header[0]) + 4:
-            stops[0] = len(header[0]) + 4
+    if stops[0] < len(headers[0]) + 4:
+        stops[0] = len(headers[0]) + 4
         
-        if stops[1] < len(header[1]) + 4:
-            stops[1] = len(header[1]) + 4
+    if stops[1] < len(headers[1]) + 4:
+        stops[1] = len(headers[1]) + 4
 
-        if stops[2] < len(header[2]) + 4:
-            stops[2] = len(header[2]) + 4
+    if stops[2] < len(headers[2]) + 4:
+        stops[2] = len(headers[2]) + 4
 
     for task in tasks:
-        if stops[0] < len(str(task.done)) + 4:
-            stops[0] = len(str(task.done)) + 4
+        if stops[0] < 5:
+            stops[0] = 5
         
         if stops[1] < len(task.name) + 4:
             stops[1] = len(task.name) + 4
