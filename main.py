@@ -54,5 +54,7 @@ while True:
         print("sort - sorts tasks alphabetically")
     elif cmd == "sort":
         task_manager.SortTasks()
+    elif cmd == "":
+        pass
     else:
-        logging.error(err)
+        logging.error("Unknown command: " + cmd)
